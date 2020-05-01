@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { CheckoutRoutingModule } from '@checkout/checkout-routing.module';
 import { PaymentsComponent } from '@checkout/payments/payments.component';
+import { SummaryComponent } from './shared/summary/summary.component';
 
 
 @NgModule({
   declarations: [
-    PaymentsComponent
+    PaymentsComponent,
+    SummaryComponent
   ],
   imports: [
     CommonModule,
