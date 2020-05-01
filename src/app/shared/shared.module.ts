@@ -4,9 +4,13 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
@@ -21,6 +25,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     NgbModule,
     ReactiveFormsModule,
+    HeaderComponent,
+    FooterComponent
   ]
 })
 export class SharedModule { }
