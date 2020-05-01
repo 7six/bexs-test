@@ -3,14 +3,29 @@
     width: 100%;
 
     .item {
-        display: inline;
+        display: inline-block;
         color: #DE4B4B;
         font-family: Verdana;
         font-size: 13px;
+
+        .step-number {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 50px;
+            border: 2px solid #DE4B4B;
+            width: 30px;
+            height: 30px;
+            font-size: 15px;
+            margin-right: 8px;
+        }
+
+        .text {
+            font-size: 13px;
+            display: inline-block;
+        }
     }
 
     .separator {
-        display: inline;
         margin-left: 10px;
         margin-right: 10px;
 
