@@ -1,0 +1,26 @@
+.items {
+    padding-top: 50px;
+    width: 100%;
+
+    .item {
+        display: inline;
+        color: #DE4B4B;
+        font-family: Verdana;
+        font-size: 13px;
+    }
+
+    .separator {
+        display: inline;
+        margin-left: 10px;
+        margin-right: 10px;
+
+        &.arrow-right {
+            border: solid #DE4B4B;
+            border-width: 0 3px 3px 0;
+            display: inline-block;
+            padding: 3px;
+            transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+        }
+    }
+}
