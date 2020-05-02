@@ -1,6 +1,7 @@
 .items {
     padding-top: 50px;
     width: 100%;
+    margin-bottom: 50px;
 
     .item {
         display: inline-block;
@@ -10,13 +11,15 @@
 
         .step-number {
             display: inline-block;
-            padding: 2px 8px;
+            padding-top: 2.8px;
+            text-align: center;
             border-radius: 50px;
-            border: 2px solid #DE4B4B;
-            width: 30px;
-            height: 30px;
-            font-size: 15px;
+            border: 1px solid #DE4B4B;
+            width: 25px;
+            height: 25px;
+            font-size: 13px;
             margin-right: 8px;
+            font-weight: bold;
         }
 
         .text {
