@@ -5,7 +5,7 @@
                 <div class="col-md-9">
                     <div class="content">
                         <div class="row">
-                            <div class="col-md-4 pr-md-0 menu">
+                            <div class="col-md-4 menu">
                                 <a href="" class="link">
                                     <div class="arrow-left"></div> Alterar forma de pagamento
                                 </a>
@@ -22,7 +22,8 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-8 pl-md-0">
+                            <!-- pl-md-0 -->
+                            <div class="col-md-8 ">
                                 <app-step-box></app-step-box>
 
                                 <form class="clearfix" [formGroup]="form" (ngSubmit)="pay()" autocomplete="off">
@@ -48,7 +49,7 @@
 
                                         <div class="col-12">
                                             <div class="form-group-material">
-                                                <input type="tel" class="form-control unscale-input-card"
+                                                <input type="text" class="form-control unscale-input-card"
                                                     [class.valid]="toggleLabel('holderName')" id="expireDate"
                                                     formControlName="holderName"
                                                     [ngClass]="checkValidationField('holderName')">
@@ -77,8 +78,40 @@
                                             </div>
                                         </div>
 
+                                        <div class="col-6">
 
+                                            <div class="form-group-material">
+                                                <input type="tel" class="form-control unscale-input-card"
+                                                    [class.valid]="toggleLabel('cvv')" id="cvv" formControlName="cvv"
+                                                    [ngClass]="checkValidationField('cvv')">
+                                                <!-- (input)="applyMask($event)" -->
+                                                <label class="animated-label">
+                                                    CVV
+                                                </label>
 
+                                                <div class="invalid-feedback" *ngIf="form.get('cvv').errors">
+                                                    {{ error('cvv') }}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <div class="form-group-material">
+                                                <label>Número de parcelas</label>
+                                                <select class="form-control" id="installment" formControlName="installment"
+                                                    [ngClass]="checkValidationField('installment')">
+                                                    <option value="" disabled>Selecione</option>
+                                                    <!-- <option
+                                                        *ngFor="let cardType of installmentByCreditCard; let i = index"
+                                                        value="{{ cardType.paymentMethodName }}">
+                                                        {{ cardType.paymentMethodName }}</option> -->
+                                                </select>
+
+                                                <div class="invalid-feedback" *ngIf="form.get('installment').errors">
+                                                    {{ error('installment') }}
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
 
                                 </form>

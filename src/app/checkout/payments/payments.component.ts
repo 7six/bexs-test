@@ -127,6 +127,16 @@ export class PaymentsComponent implements OnInit {
           validateExpireDate
         ])
       ],
+      cvv: [
+        '', Validators.compose([
+          Validators.required,
+        ])
+      ],
+      installment: [
+        '', Validators.compose([
+          Validators.required,
+        ])
+      ],
     });
   }
 
