@@ -1,36 +1,95 @@
-<div class="checkout">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-9">
-                <div class="content">
-                    <div class="row">
-                        <div class="col-md-4 pr-md-0 menu">
-                            <a href="" class="link"> <div class="arrow-left"></div> Alterar forma de pagamento</a>
+<ng-container *ngIf="show">
+    <div class="checkout">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-md-4 pr-md-0 menu">
+                                <a href="" class="link">
+                                    <div class="arrow-left"></div> Alterar forma de pagamento
+                                </a>
 
-                            <div class="card-box">
-                                <h1 class="title">
-                                    <img src="./../../../assets/images/card-icon.svg"  alt="">
-                                    <span>Adicione um novo cartão de crédito</span> 
-                                </h1>
+                                <div class="card-box">
+                                    <h1 class="title">
+                                        <img src="./../../../assets/images/card-icon.svg" alt="">
+                                        <span>Adicione um novo cartão de crédito</span>
+                                    </h1>
 
-                                <div class="card-image">
-                                    <img src="./../../../assets/images/filled-card.svg"  alt="">
+                                    <div class="card-image">
+                                        <!-- <img src="./../../../assets/images/filled-card.svg" alt=""> -->
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="col-md-8 pl-md-0">
-                            <app-step-box></app-step-box>
+                            <div class="col-md-8 pl-md-0">
+                                <app-step-box></app-step-box>
+
+                                <form class="clearfix" [formGroup]="form" (ngSubmit)="pay()" autocomplete="off">
+
+                                    <div class="row">
+                                        <div class="col-12">
+
+                                            <div class="form-group-material">
+                                                <input type="tel" class="form-control unscale-input-card"
+                                                    [class.valid]="toggleLabel('cardNumber')" id="cardNumber"
+                                                    formControlName="cardNumber"
+                                                    [ngClass]="checkValidationField('cardNumber')">
+                                                <!-- (input)="applyMask($event)" -->
+                                                <label class="animated-label">
+                                                    Número do cartão
+                                                </label>
+
+                                                <div class="invalid-feedback" *ngIf="form.get('cardNumber').errors">
+                                                    {{ error('cardNumber') }}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <div class="form-group-material">
+                                                <input type="tel" class="form-control unscale-input-card"
+                                                    [class.valid]="toggleLabel('holderName')" id="expireDate"
+                                                    formControlName="holderName"
+                                                    [ngClass]="checkValidationField('holderName')">
+                                                <label class="animated-label">
+                                                    Nome (igual ao cartão)
+                                                </label>
+
+                                                <div class="invalid-feedback" *ngIf="form.get('holderName').errors">
+                                                    {{ error('holderName') }}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-6">
+                                            <div class="form-group-material">
+                                                <input type="tel" class="form-control unscale-input-card"
+                                                    [class.valid]="toggleLabel('expireDate')" id="expireDate"
+                                                    formControlName="expireDate"
+                                                    [ngClass]="checkValidationField('expireDate')">
+                                                <!-- (input)="applyMask($event)" -->
+                                                <label class="animated-label">Validade (MM/AA)</label>
+
+                                                <div class="invalid-feedback" *ngIf="form.get('expireDate').errors">
+                                                    {{ error('expireDate') }}
+                                                </div>
+                                            </div>
+                                        </div>
 
 
-                            
+
+                                    </div>
+
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3 pl-md-0">
-                <app-summary></app-summary>
+                <div class="col-md-3 pl-md-0">
+                    <app-summary></app-summary>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</ng-container>

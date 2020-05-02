@@ -73,28 +73,6 @@ export function validateExpireDate(control: FormControl) {
     }
 }
 
-export function validateDocument(control: FormControl) {
-    const value = control.value.replace(/\D/g, '');
-
-    if (value !== undefined && value.length === 11) {
-        if (validateCPF(value)) {
-            return null;
-        }
-
-        return { invalidCpf: true };
-
-    } else if (value !== undefined && value.length === 14) {
-        if (validateCNPJ(value)) {
-            return null;
-        }
-
-        return { invalidCnpj: true };
-
-    }
-
-    return { invalidDocument: true };
-}
-
 export function validateFullname(control: FormControl) {
 
     if (control.value) {
