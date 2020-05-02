@@ -16,15 +16,31 @@
                                         <span>Adicione um novo cartão de crédito</span>
                                     </h1>
 
-                                    <div class="card-image">
-                                        <img src="./../../../assets/images/filled-card.svg" alt="">
+                                    <div class="card-image detected-brand">
+                                        <div class="credit-card-front" *ngIf="currentField !== 'cvv'">
+                                            <div class="card-number">
+                                                {{ form.get('cardNumber').value }}
+                                            </div>
+                                            <div class="card-holder-name">
+                                                {{ form.get('holderName').value }}
+                                            </div>
+                                            <div class="card-expire-date">
+                                                {{ form.get('expireDate').value }}
+                                            </div>
+                                        </div>
+
+                                        <div class="credit-card-back" *ngIf="currentField === 'cvv'">
+                                            <div class="card-cvv">
+                                                {{ form.get('cvv').value }}
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- pl-md-0 -->
                             <div class="col-md-8 ">
-                                
+
                                 <form class="cardForm" [formGroup]="form" (ngSubmit)="pay()" autocomplete="off">
                                     <app-step-box></app-step-box>
 
@@ -36,7 +52,8 @@
                                                     formControlName="cardNumber" id="cardNumber" [ngClass]="{
                                                         'is-invalid': isFieldInvalid('cardNumber'),
                                                         'valid': toggleLabel('cardNumber')
-                                                      }">
+                                                      }" (focus)="setCurrentField('cardNumber')"
+                                                    (focusout)="setCurrentField(null)">
                                                 <!-- (input)="applyMask($event)" -->
                                                 <label class="animated-label">
                                                     Número do cartão
@@ -54,7 +71,8 @@
                                                     id="holderName" formControlName="holderName" [ngClass]="{
                                                         'is-invalid': isFieldInvalid('holderName'),
                                                         'valid': toggleLabel('holderName')
-                                                      }">
+                                                      }" (focus)="setCurrentField('holderName')"
+                                                    (focusout)="setCurrentField(null)">
                                                 <label class="animated-label">
                                                     Nome (igual ao cartão)
                                                 </label>
@@ -71,7 +89,8 @@
                                                     id="expireDate" formControlName="expireDate" [ngClass]="{
                                                         'is-invalid': isFieldInvalid('expireDate'),
                                                         'valid': toggleLabel('expireDate')
-                                                      }">
+                                                      }" (focus)="setCurrentField('expireDate')"
+                                                    (focusout)="setCurrentField(null)">
                                                 <!-- (input)="applyMask($event)" -->
                                                 <label class="animated-label">Validade</label>
 
@@ -88,7 +107,8 @@
                                                     formControlName="cvv" [ngClass]="{
                                                         'is-invalid': isFieldInvalid('cvv'),
                                                         'valid': toggleLabel('cvv')
-                                                      }">
+                                                      }" (focus)="setCurrentField('cvv')"
+                                                    (focusout)="setCurrentField(null)">
                                                 <!-- (input)="applyMask($event)" -->
                                                 <label class="animated-label">
                                                     CVV
@@ -106,9 +126,10 @@
                                                     formControlName="installment" [ngClass]="{
                                                         'is-invalid': isFieldInvalid('installment'),
                                                         'valid': toggleLabel('installment')
-                                                      }">
+                                                      }" (focus)="setCurrentField('installment')"
+                                                    (focusout)="setCurrentField(null)">
                                                     <option value="" disabled hidden></option>
-                                                    <option value="1" >1x</option>
+                                                    <option value="1">1x</option>
                                                     <!-- <option
                                                         *ngFor="let cardType of installmentByCreditCard; let i = index"
                                                         value="{{ cardType.paymentMethodName }}">

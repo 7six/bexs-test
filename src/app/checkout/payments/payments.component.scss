@@ -46,6 +46,89 @@
                         margin-right: 10px;
                     }
                 }
+
+                .card-image {
+                    .credit-card-front {
+                        background-image: url("../../../assets/images/no-detected-brand-creditcard-front.svg");
+                        width: 364px;
+                        height: 245px;
+                        padding: 20px;
+                        background-position: center center;
+                        background-size: cover;
+
+                        .card-number {
+                            font-size: 22px;
+                            font-family: 'SF Pro Text';
+                            letter-spacing: 2.31px;
+                            color: #FFFFFF;
+                            text-shadow: 0px 1px 2px #000000B3;
+                            width: 100%;
+                            text-align: center;
+                        }
+
+                        .card-holder-name {
+                            width: 70%;
+                            display: inline-block;
+                            padding-left: 25px;
+                            font-size: 16px;
+                            font-family: 'SF Pro Text';
+                            letter-spacing: 2.31px;
+                            color: #FFFFFF;
+                            text-shadow: 0px 1px 2px #000000B3;
+                            text-transform: uppercase;
+                            overflow: hidden;
+                            white-space: nowrap;
+                        }
+
+                        .card-expire-date {
+                            width: 30%;
+                            display: inline-block;
+                            text-align: right;
+                            padding-right: 25px;
+                            font-size: 16px;
+                            font-family: 'SF Pro Text';
+                            letter-spacing: 2.31px;
+                            color: #FFFFFF;
+                            text-shadow: 0px 1px 2px #000000B3;
+                            overflow: hidden;
+                            white-space: nowrap;
+                        }
+                    }
+
+                    .credit-card-back {
+                        background-image: url("../../../assets/images/no-detected-brand-creditcard-back.svg");
+                        width: 364px;
+                        height: 245px;
+                        padding: 20px;
+                        background-position: center center;
+                        background-size: cover;
+                        position: relative;
+
+                        .card-cvv {
+                            position: absolute;
+                            font-size: 16px;
+                            font-family: 'SF Pro Text';
+                            letter-spacing: 2.31px;
+                            color: #333333;
+                            text-shadow: 0px 1px 2px #FFF;
+                            text-align: center;
+                            width: 60px;
+                            bottom: 103px;
+                            right: 135px;
+                            overflow: hidden;
+                        }
+                    }
+
+                    &.detected-brand {
+                        .credit-card-front {
+                            background-image: url("../../../assets/images/detected-brand-creditcard-front.svg");
+                        }
+
+                        .credit-card-back {
+                            background-image: url("../../../assets/images/detected-brand-creditcard-back.svg");
+                        }
+                    }
+                }
             }
         }
 

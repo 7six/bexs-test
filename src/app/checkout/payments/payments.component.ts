@@ -12,6 +12,7 @@ export class PaymentsComponent implements OnInit {
 
   public show = false;
   public form: FormGroup;
+  public currentField = null;
 
   private showInvalidFields = false;
 
@@ -27,6 +28,10 @@ export class PaymentsComponent implements OnInit {
 
   pay() {
 
+  }
+
+  setCurrentField(field: string) {
+    this.currentField = field;
   }
 
   toggleLabel(id) {
@@ -82,7 +87,7 @@ export class PaymentsComponent implements OnInit {
     }
   }
 
-  private isFieldInvalid(fieldName) {
+  isFieldInvalid(fieldName) {
     const field = this.form.get(fieldName);
 
     if (field.invalid && field.touched) {
@@ -100,7 +105,7 @@ export class PaymentsComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       cardNumber: [
-        '', Validators.compose([
+        '5555 6666 7777 8884', Validators.compose([
           Validators.required,
           Validators.minLength(13),
           Validators.maxLength(25),
@@ -108,13 +113,13 @@ export class PaymentsComponent implements OnInit {
         ])
       ],
       holderName: [
-        '', Validators.compose([
+        'FELIPE B A PIO NT', Validators.compose([
           Validators.required,
           validateFullname
         ])
       ],
       expireDate: [
-        '', Validators.compose([
+        '06/26', Validators.compose([
           Validators.required,
           Validators.minLength(5),
           Validators.maxLength(5),
@@ -122,7 +127,7 @@ export class PaymentsComponent implements OnInit {
         ])
       ],
       cvv: [
-        '', Validators.compose([
+        '1234', Validators.compose([
           Validators.required,
         ])
       ],
