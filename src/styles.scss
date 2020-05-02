@@ -6,8 +6,8 @@ body {
 
 .form-group-material {
     position: relative;
-    padding-top: 12px;
-    margin-bottom: 16px;
+    padding-top: 20px;
+    margin-bottom: 20px;
     position: relative;
     width: 100%;
 
@@ -127,6 +127,10 @@ body {
             font-weight: 300;
             color: #505050;
         }
+    }
+
+    select.form-control {
+        height: 28.5px;
     }
 
     .invalid-feedback {

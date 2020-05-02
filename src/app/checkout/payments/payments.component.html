@@ -102,18 +102,22 @@
 
                                         <div class="col-12">
                                             <div class="form-group-material">
-                                                <label>Número de parcelas</label>
                                                 <select class="form-control" id="installment"
                                                     formControlName="installment" [ngClass]="{
                                                         'is-invalid': isFieldInvalid('installment'),
                                                         'valid': toggleLabel('installment')
                                                       }">
-                                                    <option value="" disabled>Selecione</option>
+                                                    <option value="" disabled hidden></option>
+                                                    <option value="1" >1x</option>
                                                     <!-- <option
                                                         *ngFor="let cardType of installmentByCreditCard; let i = index"
                                                         value="{{ cardType.paymentMethodName }}">
                                                         {{ cardType.paymentMethodName }}</option> -->
                                                 </select>
+
+                                                <label class="animated-label">
+                                                    Número de parcelas
+                                                </label>
 
                                                 <div class="invalid-feedback" *ngIf="form.get('installment').errors">
                                                     {{ error('installment') }}
