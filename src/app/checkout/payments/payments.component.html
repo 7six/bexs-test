@@ -18,6 +18,9 @@
 
                                     <div class="card-image detected-brand">
                                         <div class="credit-card-front" *ngIf="currentField !== 'cvv'">
+                                            <div class="card-brand">
+                                                <img src="./../../../assets/images/card-brand-visa.png" alt="">
+                                            </div>
                                             <div class="card-number">
                                                 {{ form.get('cardNumber').value }}
                                             </div>

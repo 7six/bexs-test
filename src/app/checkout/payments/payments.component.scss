@@ -5,8 +5,6 @@
     .content {
         background: #FFF;
 
-        // height: 300px;
-
         .menu {
             background: #DE4B4B;
 
@@ -56,6 +54,13 @@
                         background-position: center center;
                         background-size: cover;
 
+                        .card-brand{
+                            width: 69px;
+                            margin-top: 15px;
+                            margin-left: 20px;
+                            margin-bottom: 38px;
+                        }
+
                         .card-number {
                             font-size: 22px;
                             font-family: 'SF Pro Text';
@@ -64,12 +69,13 @@
                             text-shadow: 0px 1px 2px #000000B3;
                             width: 100%;
                             text-align: center;
+                            margin-bottom: 35px;
                         }
 
                         .card-holder-name {
                             width: 70%;
                             display: inline-block;
-                            padding-left: 25px;
+                            padding-left: 23px;
                             font-size: 16px;
                             font-family: 'SF Pro Text';
                             letter-spacing: 2.31px;
@@ -84,7 +90,7 @@
                             width: 30%;
                             display: inline-block;
                             text-align: right;
-                            padding-right: 25px;
+                            padding-right: 23px;
                             font-size: 16px;
                             font-family: 'SF Pro Text';
                             letter-spacing: 2.31px;
@@ -98,7 +104,7 @@
                     .credit-card-back {
                         background-image: url("../../../assets/images/no-detected-brand-creditcard-back.svg");
                         width: 364px;
-                        height: 245px;
+                        height: 224px;
                         padding: 20px;
                         background-position: center center;
                         background-size: cover;
@@ -113,8 +119,8 @@
                             text-shadow: 0px 1px 2px #FFF;
                             text-align: center;
                             width: 60px;
-                            bottom: 103px;
-                            right: 135px;
+                            bottom: 93px;
+                            right: 136px;
                             overflow: hidden;
                         }
                     }

@@ -72,7 +72,7 @@ export class PaymentsComponent implements OnInit {
     } else if (fieldName === 'cvv') {
 
       const cleanedValue = field.value.replace(/\D/g, '');
-      const matcher = cleanedValue.match(/(\d{0,4})/);
+      const matcher = cleanedValue.match(/(\d{0,3})/);
       newValue = matcher[1];
     }
 
@@ -181,7 +181,7 @@ export class PaymentsComponent implements OnInit {
         ])
       ],
       cvv: [
-        '1234', Validators.compose([
+        '123', Validators.compose([
           Validators.required,
         ])
       ],
