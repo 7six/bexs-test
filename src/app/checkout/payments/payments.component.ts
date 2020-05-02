@@ -13,6 +13,7 @@ export class PaymentsComponent implements OnInit {
   public show = false;
   public form: FormGroup;
   public currentField = null;
+  public installments = [];
 
   private showInvalidFields = false;
 
@@ -23,6 +24,7 @@ export class PaymentsComponent implements OnInit {
   ngOnInit() {
 
     this.createForm();
+    this.setInstallments();
     this.show = true;
   }
 
@@ -43,6 +45,42 @@ export class PaymentsComponent implements OnInit {
       return false;
     }
   }
+
+  mask(event: any) {
+
+    const fieldName = event.target['attributes']['formcontrolname']['value'];
+    const field = this.form.get(fieldName);
+    let newValue: any;
+
+    if (fieldName === 'cardNumber') {
+
+      const cleanedValue = field.value.replace(/\D/g, '');
+      const matcher = cleanedValue.match(/(\d{0,19})/);
+      newValue = matcher[1];
+
+    } else if (fieldName === 'holderName') {
+      newValue = field.value.replace(/\d/g, '');
+
+    } else if (fieldName === 'expireDate') {
+
+      const cleanedValue = field.value.replace(/\D/g, '');
+      const matcher = cleanedValue.match(/(\d{0,2})(\d{0,2})/);
+      const value = [matcher[1]];
+      value.push((matcher[2]) ? '/' + matcher[2] : '');
+      newValue = value.join('');
+
+    } else if (fieldName === 'cvv') {
+
+      const cleanedValue = field.value.replace(/\D/g, '');
+      const matcher = cleanedValue.match(/(\d{0,4})/);
+      newValue = matcher[1];
+    }
+
+    if (newValue !== undefined) {
+      field.setValue(newValue);
+    }
+  }
+
 
   error(fieldName) {
     const field = this.form.get(fieldName).errors;
@@ -99,6 +137,22 @@ export class PaymentsComponent implements OnInit {
     }
 
     return false;
+  }
+
+  private setInstallments() {
+
+    const total = 12000;
+    let installments = [];
+
+    for (let i = 1; i <= 12; i++) {
+      installments.push({
+        installmentNumber: i,
+        installmentValue: (total / i),
+        interestDescription: (i === 1? 'à vista': 'sem juros')
+      });
+    }
+
+    this.installments = installments;
   }
 
   private createForm() {

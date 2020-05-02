@@ -53,8 +53,8 @@
                                                         'is-invalid': isFieldInvalid('cardNumber'),
                                                         'valid': toggleLabel('cardNumber')
                                                       }" (focus)="setCurrentField('cardNumber')"
-                                                    (focusout)="setCurrentField(null)">
-                                                <!-- (input)="applyMask($event)" -->
+                                                    (focusout)="setCurrentField(null)" (input)="mask($event)">
+
                                                 <label class="animated-label">
                                                     Número do cartão
                                                 </label>
@@ -72,7 +72,7 @@
                                                         'is-invalid': isFieldInvalid('holderName'),
                                                         'valid': toggleLabel('holderName')
                                                       }" (focus)="setCurrentField('holderName')"
-                                                    (focusout)="setCurrentField(null)">
+                                                    (focusout)="setCurrentField(null)" (input)="mask($event)">
                                                 <label class="animated-label">
                                                     Nome (igual ao cartão)
                                                 </label>
@@ -90,8 +90,7 @@
                                                         'is-invalid': isFieldInvalid('expireDate'),
                                                         'valid': toggleLabel('expireDate')
                                                       }" (focus)="setCurrentField('expireDate')"
-                                                    (focusout)="setCurrentField(null)">
-                                                <!-- (input)="applyMask($event)" -->
+                                                    (focusout)="setCurrentField(null)" (input)="mask($event)">
                                                 <label class="animated-label">Validade</label>
 
                                                 <div class="invalid-feedback" *ngIf="form.get('expireDate').errors">
@@ -108,8 +107,7 @@
                                                         'is-invalid': isFieldInvalid('cvv'),
                                                         'valid': toggleLabel('cvv')
                                                       }" (focus)="setCurrentField('cvv')"
-                                                    (focusout)="setCurrentField(null)">
-                                                <!-- (input)="applyMask($event)" -->
+                                                    (focusout)="setCurrentField(null)" (input)="mask($event)">
                                                 <label class="animated-label">
                                                     CVV
                                                 </label>
@@ -129,11 +127,16 @@
                                                       }" (focus)="setCurrentField('installment')"
                                                     (focusout)="setCurrentField(null)">
                                                     <option value="" disabled hidden></option>
-                                                    <option value="1">1x</option>
-                                                    <!-- <option
-                                                        *ngFor="let cardType of installmentByCreditCard; let i = index"
-                                                        value="{{ cardType.paymentMethodName }}">
-                                                        {{ cardType.paymentMethodName }}</option> -->
+
+                                                    <ng-container
+                                                        *ngFor="let installment of installments; let i = index">
+                                                        <option [ngValue]="installment">
+                                                            {{ installment.installmentNumber }}x
+                                                            {{ installment.installmentValue | currency:'BRL':'symbol' }}
+                                                            {{ installment.interestDescription }}
+                                                        </option>
+                                                    </ng-container>
+
                                                 </select>
 
                                                 <label class="animated-label">
