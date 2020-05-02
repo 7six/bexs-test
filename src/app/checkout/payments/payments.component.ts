@@ -29,12 +29,6 @@ export class PaymentsComponent implements OnInit {
 
   }
 
-  checkValidationField(fieldName) {
-    return {
-      'is-invalid': this.isFieldInvalid(fieldName)
-    };
-  }
-
   toggleLabel(id) {
     const element = <any>document.getElementById(id);
     const elementLength = element.value.length;

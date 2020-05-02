@@ -17,7 +17,7 @@
                                     </h1>
 
                                     <div class="card-image">
-                                        <!-- <img src="./../../../assets/images/filled-card.svg" alt=""> -->
+                                        <img src="./../../../assets/images/filled-card.svg" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -26,16 +26,17 @@
                             <div class="col-md-8 ">
                                 <app-step-box></app-step-box>
 
-                                <form class="clearfix" [formGroup]="form" (ngSubmit)="pay()" autocomplete="off">
+                                <form class="cardForm" [formGroup]="form" (ngSubmit)="pay()" autocomplete="off">
 
                                     <div class="row">
                                         <div class="col-12">
 
                                             <div class="form-group-material">
                                                 <input type="tel" class="form-control unscale-input-card"
-                                                    [class.valid]="toggleLabel('cardNumber')" id="cardNumber"
-                                                    formControlName="cardNumber"
-                                                    [ngClass]="checkValidationField('cardNumber')">
+                                                    formControlName="cardNumber" id="cardNumber" [ngClass]="{
+                                                        'is-invalid': isFieldInvalid('cardNumber'),
+                                                        'valid': toggleLabel('cardNumber')
+                                                      }">
                                                 <!-- (input)="applyMask($event)" -->
                                                 <label class="animated-label">
                                                     Número do cartão
@@ -50,9 +51,10 @@
                                         <div class="col-12">
                                             <div class="form-group-material">
                                                 <input type="text" class="form-control unscale-input-card"
-                                                    [class.valid]="toggleLabel('holderName')" id="expireDate"
-                                                    formControlName="holderName"
-                                                    [ngClass]="checkValidationField('holderName')">
+                                                    id="holderName" formControlName="holderName" [ngClass]="{
+                                                        'is-invalid': isFieldInvalid('holderName'),
+                                                        'valid': toggleLabel('holderName')
+                                                      }">
                                                 <label class="animated-label">
                                                     Nome (igual ao cartão)
                                                 </label>
@@ -66,11 +68,12 @@
                                         <div class="col-6">
                                             <div class="form-group-material">
                                                 <input type="tel" class="form-control unscale-input-card"
-                                                    [class.valid]="toggleLabel('expireDate')" id="expireDate"
-                                                    formControlName="expireDate"
-                                                    [ngClass]="checkValidationField('expireDate')">
+                                                    id="expireDate" formControlName="expireDate" [ngClass]="{
+                                                        'is-invalid': isFieldInvalid('expireDate'),
+                                                        'valid': toggleLabel('expireDate')
+                                                      }">
                                                 <!-- (input)="applyMask($event)" -->
-                                                <label class="animated-label">Validade (MM/AA)</label>
+                                                <label class="animated-label">Validade</label>
 
                                                 <div class="invalid-feedback" *ngIf="form.get('expireDate').errors">
                                                     {{ error('expireDate') }}
@@ -81,9 +84,11 @@
                                         <div class="col-6">
 
                                             <div class="form-group-material">
-                                                <input type="tel" class="form-control unscale-input-card"
-                                                    [class.valid]="toggleLabel('cvv')" id="cvv" formControlName="cvv"
-                                                    [ngClass]="checkValidationField('cvv')">
+                                                <input type="tel" class="form-control unscale-input-card" id="cvv"
+                                                    formControlName="cvv" [ngClass]="{
+                                                        'is-invalid': isFieldInvalid('cvv'),
+                                                        'valid': toggleLabel('cvv')
+                                                      }">
                                                 <!-- (input)="applyMask($event)" -->
                                                 <label class="animated-label">
                                                     CVV
@@ -98,8 +103,11 @@
                                         <div class="col-12">
                                             <div class="form-group-material">
                                                 <label>Número de parcelas</label>
-                                                <select class="form-control" id="installment" formControlName="installment"
-                                                    [ngClass]="checkValidationField('installment')">
+                                                <select class="form-control" id="installment"
+                                                    formControlName="installment" [ngClass]="{
+                                                        'is-invalid': isFieldInvalid('installment'),
+                                                        'valid': toggleLabel('installment')
+                                                      }">
                                                     <option value="" disabled>Selecione</option>
                                                     <!-- <option
                                                         *ngFor="let cardType of installmentByCreditCard; let i = index"
@@ -111,6 +119,12 @@
                                                     {{ error('installment') }}
                                                 </div>
                                             </div>
+                                        </div>
+
+                                        <div class="col-12 text-right">
+                                            <button type="submit" class="btn btn-continue">
+                                                Continuar
+                                            </button>
                                         </div>
                                     </div>
 
