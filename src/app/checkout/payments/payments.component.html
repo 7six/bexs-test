@@ -61,7 +61,8 @@
                                                         'is-invalid': isFieldInvalid('cardNumber'),
                                                         'valid': toggleLabel('cardNumber')
                                                       }" (focus)="setCurrentField('cardNumber')"
-                                                    (focusout)="setCurrentField(null)" (input)="mask($event)">
+                                                    (focusout)="setCurrentField(null)" (input)="mask('cardNumber')"
+                                                    maxlength="19">
 
                                                 <label class="animated-label">
                                                     Número do cartão
@@ -104,7 +105,7 @@
                                                         'is-invalid': isFieldInvalid('holderName'),
                                                         'valid': toggleLabel('holderName')
                                                       }" (focus)="setCurrentField('holderName')"
-                                                    (focusout)="setCurrentField(null)" (input)="mask($event)">
+                                                    (focusout)="setCurrentField(null)" (input)="mask('holderName')">
                                                 <label class="animated-label">
                                                     Nome (igual ao cartão)
                                                 </label>
@@ -122,7 +123,8 @@
                                                         'is-invalid': isFieldInvalid('expireDate'),
                                                         'valid': toggleLabel('expireDate')
                                                       }" (focus)="setCurrentField('expireDate')"
-                                                    (focusout)="setCurrentField(null)" (input)="mask($event)">
+                                                    (focusout)="setCurrentField(null)" (input)="mask('expireDate')"
+                                                    maxlength="5">
                                                 <label class="animated-label">Validade</label>
 
                                                 <div class="invalid-feedback" *ngIf="form.get('expireDate').errors">
@@ -139,7 +141,8 @@
                                                         'is-invalid': isFieldInvalid('cvv'),
                                                         'valid': toggleLabel('cvv')
                                                       }" (focus)="setCurrentField('cvv')"
-                                                    (focusout)="setCurrentField(null)" (input)="mask($event)">
+                                                    (focusout)="setCurrentField(null)" (input)="mask('cvv')"
+                                                    maxlength="3">
                                                 <label class="animated-label">
                                                     CVV
                                                 </label>

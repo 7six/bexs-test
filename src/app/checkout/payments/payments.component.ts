@@ -31,6 +31,12 @@ export class PaymentsComponent implements OnInit {
 
   pay() {
 
+    if (this.form.valid) {
+
+    } else {
+      console.log(this.form);
+      this.showInvalidFields = true;
+    }
   }
 
   setCurrentField(field: string) {
@@ -47,9 +53,9 @@ export class PaymentsComponent implements OnInit {
     }
   }
 
-  mask(event: any) {
+  mask(fieldName: string) {
 
-    const fieldName = event.target['attributes']['formcontrolname']['value'];
+    // const fieldName = event.target['attributes']['formcontrolname']['value'];
     const field = this.form.get(fieldName);
     let newValue: any;
 
@@ -89,41 +95,50 @@ export class PaymentsComponent implements OnInit {
     }
   }
 
-  error(fieldName) {
-    const field = this.form.get(fieldName).errors;
-    let message;
+  error(fieldName: string) {
+
+    let message: string;
+    const error = this.form.get(fieldName).errors;
 
     if (fieldName === 'cardNumber') {
-      if (field.invalidCard) {
-        message = 'Por favor, verifique os números do seu cartão';
-      } else if (field.noAcceptCard) {
-        message = `Verifique os números do seu cartão`;
-      } else if (field.sameCard) {
-        message = `Esse cartão já está sendo utilizado`;
-      } else if (field.minlength) {
-        message = `Preencha número do cartão completo`;
-      } else if (field.maxlength) {
-        message = `Por favor, verifique os números do seu cartão`;
-      } else if (field.required) {
-        message = `Número do cartão é obrigatório`;
+      if (error.required) {
+        message = `Campo obrigatório`;
+
+      } else if (error.invalidCard || error.minlength || error.maxlength) {
+        message = 'Número de cartão inválido';
       }
     }
 
     if (fieldName === 'holderName') {
-      if (field.required) {
-        message = `Nome do titular do cartão é obrigatório`;
-      } else if (field.invalidFullname) {
-        message = `Nome do titular é obrigatório`;
+      if (error.required) {
+        message = `Campo obrigatório`;
+
+      } else if (error.invalidFullname) {
+        message = `Insira seu nome completo`;
       }
     }
 
     if (fieldName === 'expireDate') {
-      if (field.required) {
-        message = `Validade é obrigatória`;
-      } else if (field.minlength) {
-        message = `Preencha a validade completa`;
-      } else if (field.invalidDate) {
-        message = `Validade do cartão está incorreta`;
+      if (error.required) {
+        message = `Campo obrigatório`;
+
+      } else if (error.invalidDate || error.minlength || error.maxlength) {
+        message = `Data inválida`;
+      }
+    }
+
+    if (fieldName === 'cvv') {
+      if (error.required) {
+        message = `Campo obrigatório`;
+
+      } else if (error.minlength || error.maxlength) {
+        message = `Código inválido`;
+      }
+    }
+
+    if (fieldName === 'installment') {
+      if (error.required) {
+        message = `Insira o número de parcelas`;
       }
     }
 
@@ -132,7 +147,7 @@ export class PaymentsComponent implements OnInit {
     }
   }
 
-  isFieldInvalid(fieldName) {
+  isFieldInvalid(fieldName: string) {
     const field = this.form.get(fieldName);
 
     if (field.invalid && field.touched) {
@@ -166,8 +181,8 @@ export class PaymentsComponent implements OnInit {
       cardNumber: [
         '', Validators.compose([
           Validators.required,
-          Validators.minLength(13),
-          Validators.maxLength(25),
+          Validators.minLength(19),
+          Validators.maxLength(19),
           validateCard
         ])
       ],
@@ -188,6 +203,8 @@ export class PaymentsComponent implements OnInit {
       cvv: [
         '', Validators.compose([
           Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(3),
         ])
       ],
       brand: [
