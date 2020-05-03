@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { validateCard, validateFullname, validateExpireDate } from '@app/shared/validators/custom-validators';
+import { ECardsRegex } from '../shared/enum/ECardsRegex';
 
 
 @Component({
@@ -55,8 +56,15 @@ export class PaymentsComponent implements OnInit {
     if (fieldName === 'cardNumber') {
 
       const cleanedValue = field.value.replace(/\D/g, '');
-      const matcher = cleanedValue.match(/(\d{0,19})/);
-      newValue = matcher[1];
+      const matcher = cleanedValue.match(/(\d{0,4})(\d{0,4})(\d{0,4})(\d{0,4})/);
+      const value = [matcher[1]];
+
+      value.push((matcher[2]) ? ' ' + matcher[2] : '');
+      value.push((matcher[3]) ? ' ' + matcher[3] : '');
+      value.push((matcher[4]) ? ' ' + matcher[4] : '');
+      newValue = value.join('');
+
+      this.fillCardBrand(cleanedValue)
 
     } else if (fieldName === 'holderName') {
       newValue = field.value.replace(/\d/g, '');
@@ -80,7 +88,6 @@ export class PaymentsComponent implements OnInit {
       field.setValue(newValue);
     }
   }
-
 
   error(fieldName) {
     const field = this.form.get(fieldName).errors;
@@ -139,20 +146,18 @@ export class PaymentsComponent implements OnInit {
     return false;
   }
 
-  private setFakeInstallments() {
+  private fillCardBrand(card: any) {
 
-    const total = 12000;
-    let installments = [];
+    const field = this.form.get('brand');
 
-    for (let i = 1; i <= 12; i++) {
-      installments.push({
-        installmentNumber: i,
-        installmentValue: (total / i),
-        interestDescription: (i === 1? 'à vista': 'sem juros')
-      });
+    for (const [key, value] of Object.entries(ECardsRegex)) {
+      if (card.match(value)) {
+        field.setValue(key);
+        return;
+      }
     }
 
-    this.installments = installments;
+    field.setValue('');
   }
 
   private createForm() {
@@ -185,6 +190,11 @@ export class PaymentsComponent implements OnInit {
           Validators.required,
         ])
       ],
+      brand: [
+        '', Validators.compose([
+          Validators.required,
+        ])
+      ],
       installment: [
         '', Validators.compose([
           Validators.required,
@@ -193,6 +203,20 @@ export class PaymentsComponent implements OnInit {
     });
   }
 
+  private setFakeInstallments() {
 
+    const total = 12000;
+    let installments = [];
+
+    for (let i = 1; i <= 12; i++) {
+      installments.push({
+        installmentNumber: i,
+        installmentValue: (total / i),
+        interestDescription: (i === 1 ? 'à vista' : 'sem juros')
+      });
+    }
+
+    this.installments = installments;
+  }
 
 }

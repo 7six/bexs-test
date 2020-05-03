@@ -16,10 +16,15 @@
                                         <span>Adicione um novo cartão de crédito</span>
                                     </h1>
 
-                                    <div class="card-image detected-brand">
+                                    <div class="card-image" [ngClass]="{
+                                        'detected-brand': (!!form.get('brand').value)
+                                    }">
                                         <div class="credit-card-front" *ngIf="currentField !== 'cvv'">
                                             <div class="card-brand">
-                                                <img src="./../../../assets/images/card-brand-visa.png" alt="">
+                                                <ng-container *ngIf="(!!form.get('brand').value)">
+                                                    <img
+                                                        src="./../../../assets/images/card-brand-{{ form.get('brand').value }}.png">
+                                                </ng-container>
                                             </div>
                                             <div class="card-number">
                                                 {{ form.get('cardNumber').value || '**** **** **** ****' }}
@@ -64,6 +69,30 @@
 
                                                 <div class="invalid-feedback" *ngIf="form.get('cardNumber').errors">
                                                     {{ error('cardNumber') }}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12" [hidden]="true">
+                                            <div class="form-group-material">
+                                                <select class="form-control" id="brand" formControlName="brand"
+                                                    [ngClass]="{
+                                                        'is-invalid': isFieldInvalid('brand'),
+                                                        'valid': toggleLabel('brand')
+                                                      }" (focus)="setCurrentField('brand')"
+                                                    (focusout)="setCurrentField(null)">
+                                                    <option value="" disabled hidden></option>
+
+                                                    <option value="visa">Visa</option>
+                                                    <option value="master">Master Card</option>
+                                                </select>
+
+                                                <label class="animated-label">
+                                                    Bandeira
+                                                </label>
+
+                                                <div class="invalid-feedback" *ngIf="form.get('brand').errors">
+                                                    {{ error('brand') }}
                                                 </div>
                                             </div>
                                         </div>

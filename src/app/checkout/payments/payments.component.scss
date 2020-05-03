@@ -1,6 +1,7 @@
 .checkout {
     padding-top: 65px;
     padding-bottom: 68px;
+    min-height: 84vh;
 
     .content {
         background: #FFF;
@@ -49,10 +50,13 @@
                     .credit-card-front {
                         background-image: url("../../../assets/images/no-detected-brand-creditcard-front.svg");
                         width: 364px;
+                        // width: 100%;
                         height: 245px;
                         padding: 20px;
                         background-position: center center;
                         background-size: cover;
+
+                        // background: url("../../../assets/images/no-detected-brand-creditcard-front.svg") center center cover no-repeat fixed;
 
                         .card-brand {
                             width: 100%;
