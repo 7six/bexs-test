@@ -43,23 +43,20 @@ export class PaymentsComponent implements OnInit {
     this.currentField = field;
   }
 
-  toggleLabel(id) {
-    const element = <any>document.getElementById(id);
-    const elementLength = element.value.length;
-    if (elementLength >= 1) {
-      return true;
-    } else {
-      return false;
-    }
+  toggleLabel(fieldName: string) {
+    const field = this.form.get(fieldName);
+    return (!!field.value);
   }
 
   mask(fieldName: string) {
 
-    // const fieldName = event.target['attributes']['formcontrolname']['value'];
-    const field = this.form.get(fieldName);
     let newValue: any;
+    const field = this.form.get(fieldName);
 
     if (fieldName === 'cardNumber') {
+
+      console.log(field);
+
 
       const cleanedValue = field.value.replace(/\D/g, '');
       const matcher = cleanedValue.match(/(\d{0,4})(\d{0,4})(\d{0,4})(\d{0,4})/);
@@ -179,7 +176,7 @@ export class PaymentsComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       cardNumber: [
-        '', Validators.compose([
+        '5555666677778884', Validators.compose([
           Validators.required,
           Validators.minLength(19),
           Validators.maxLength(19),
@@ -218,6 +215,8 @@ export class PaymentsComponent implements OnInit {
         ])
       ],
     });
+
+      this.mask('cardNumber');
   }
 
   private setFakeInstallments() {
