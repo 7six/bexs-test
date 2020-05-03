@@ -24,7 +24,7 @@ export class PaymentsComponent implements OnInit {
   ngOnInit() {
 
     this.createForm();
-    this.setInstallments();
+    this.setFakeInstallments();
     this.show = true;
   }
 
@@ -139,7 +139,7 @@ export class PaymentsComponent implements OnInit {
     return false;
   }
 
-  private setInstallments() {
+  private setFakeInstallments() {
 
     const total = 12000;
     let installments = [];
@@ -159,7 +159,7 @@ export class PaymentsComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       cardNumber: [
-        '5555 6666 7777 8884', Validators.compose([
+        '', Validators.compose([
           Validators.required,
           Validators.minLength(13),
           Validators.maxLength(25),
@@ -167,13 +167,13 @@ export class PaymentsComponent implements OnInit {
         ])
       ],
       holderName: [
-        'FELIPE B A PIO NT', Validators.compose([
+        '', Validators.compose([
           Validators.required,
           validateFullname
         ])
       ],
       expireDate: [
-        '06/26', Validators.compose([
+        '', Validators.compose([
           Validators.required,
           Validators.minLength(5),
           Validators.maxLength(5),
@@ -181,7 +181,7 @@ export class PaymentsComponent implements OnInit {
         ])
       ],
       cvv: [
-        '123', Validators.compose([
+        '', Validators.compose([
           Validators.required,
         ])
       ],

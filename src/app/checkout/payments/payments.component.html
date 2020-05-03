@@ -22,19 +22,19 @@
                                                 <img src="./../../../assets/images/card-brand-visa.png" alt="">
                                             </div>
                                             <div class="card-number">
-                                                {{ form.get('cardNumber').value }}
+                                                {{ form.get('cardNumber').value || '**** **** **** ****' }}
                                             </div>
                                             <div class="card-holder-name">
-                                                {{ form.get('holderName').value }}
+                                                {{ form.get('holderName').value || 'nome do titular'}}
                                             </div>
                                             <div class="card-expire-date">
-                                                {{ form.get('expireDate').value }}
+                                                {{ form.get('expireDate').value || '00/00'}}
                                             </div>
                                         </div>
 
                                         <div class="credit-card-back" *ngIf="currentField === 'cvv'">
                                             <div class="card-cvv">
-                                                {{ form.get('cvv').value }}
+                                                {{ form.get('cvv').value || '***'}}
                                             </div>
                                         </div>
                                     </div>
