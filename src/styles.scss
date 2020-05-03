@@ -3,6 +3,7 @@
 body {
     background: #F7F7F7;
     overflow-x: hidden;
+    font-family: Verdana;
 }
 
 .form-group-material {
@@ -26,7 +27,7 @@ body {
         -moz-user-select: none;
         user-select: none;
         color: #C9C9C9;
-        font-size: 16px;
+        font-size: 17px;
 
         &.select-label {
             top: -5px;
@@ -43,8 +44,8 @@ body {
         background-color: transparent;
         border: 0;
         border-bottom: 1px solid #DADADB;
-        font-size: 16px;
-        color: #333333;
+        font-size: 17px;
+        color: #3C3C3C;
         border-radius: 0;
         background-image: none;
 
@@ -137,5 +138,13 @@ body {
     .invalid-feedback {
         font-size: 13px;
         color: #EB5757;
+    }
+}
+
+@media (max-width: 576px) {
+    .form-group-material {
+        .invalid-feedback {
+            font-size: 11px;
+        }
     }
 }

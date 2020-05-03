@@ -20,9 +20,8 @@
                                             <span>Adicione um novo<br> cartão de crédito</span>
                                         </h1>
 
-                                        <div class="card-image" [ngClass]="{
-                                        'detected-brand': (!!form.get('brand').value)
-                                    }">
+                                        <div class="card-image"
+                                            [ngClass]="{'detected-brand': (!!form.get('brand').value)}">
                                             <div class="credit-card-front" *ngIf="currentField !== 'cvv'">
                                                 <div class="card-brand">
                                                     <ng-container *ngIf="(!!form.get('brand').value)">

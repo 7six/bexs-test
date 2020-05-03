@@ -176,7 +176,7 @@ export class PaymentsComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       cardNumber: [
-        '5555666677778884', Validators.compose([
+        '', Validators.compose([
           Validators.required,
           Validators.minLength(19),
           Validators.maxLength(19),
