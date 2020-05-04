@@ -37,12 +37,15 @@ export class PaymentsComponent implements OnInit, OnDestroy {
     this.createForm();
     this.setFakeInstallments();
     this.show = true;
+
+    // const data = {} as IPayment;
+    // data.cardNumber = '4111111111111111';
+    // this.pay(data);
   }
 
   ngOnDestroy() {
     this.subscriptions.forEach(s => s.unsubscribe());
   }
-
 
   submit() {
 
@@ -178,13 +181,16 @@ export class PaymentsComponent implements OnInit, OnDestroy {
   private pay(data: IPayment) {
 
     const subscription = this.paymentService.pay(data).subscribe((res) => {
-  
+
       this.paymentErrorMessage = '';
       this.router.navigate(['/checkout-v2/pagamento/confirmacao']);
 
     }, err => {
-      debugger;
-        this.paymentErrorMessage = err.message;
+
+      // console.log(err);
+
+      // debugger;
+      this.paymentErrorMessage = err.message;
     });
 
     this.subscriptions.push(subscription);

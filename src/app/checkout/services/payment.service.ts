@@ -18,12 +18,9 @@ export class PaymentService {
 
     // MOCK
     if (data.cardNumber !== '4111111111111111') {
-
-      return of(this.mockResponseSuccessPayment());
+      return of({ message: 'Pagamento efetuado com sucesso!' });
     } else {
-      return throwError({
-        message: 'Pagamento não aprovado'
-      });
+      return throwError({ message: 'Pagamento não aprovado' });
     }
 
     // REAL REQUEST BODY TO API
@@ -38,23 +35,4 @@ export class PaymentService {
 
     // }));
   }
-
-  private mockResponseSuccessPayment() {
-
-    const data = `{
-        message: 'Pagamento efetuado com sucesso!'
-      }`;
-
-    return data;
-  }
-
-  private mockResponseErrorPayment() {
-
-    const data = JSON.stringify(`{
-        message: 'Pagamento não aprovado'
-      }`);
-
-    return JSON.parse(data);
-  }
-
 }
