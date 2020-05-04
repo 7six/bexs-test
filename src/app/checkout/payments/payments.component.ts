@@ -1,25 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { validateCard, validateFullname, validateExpireDate } from '@app/shared/validators/custom-validators';
-import { ECardsRegex } from '../shared/enum/ECardsRegex';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
+import { PaymentService } from '@checkout/services/payment.service';
+import { validateCard, validateFullname, validateExpireDate } from '@app/shared/validators/custom-validators';
+
+import { ECardsRegex } from '@checkout/shared/enum/ECardsRegex';
+import { IPayment } from '../shared/interfaces/IPayments';
+import { debug } from 'util';
 
 @Component({
   selector: 'app-payments',
   templateUrl: './payments.component.html',
   styleUrls: ['./payments.component.scss']
 })
-export class PaymentsComponent implements OnInit {
+export class PaymentsComponent implements OnInit, OnDestroy {
 
   public show = false;
   public form: FormGroup;
   public currentField = null;
   public installments = [];
+  public paymentErrorMessage = '';
 
   private showInvalidFields = false;
+  private subscriptions: Subscription[] = [];
 
   constructor(
+    private router: Router,
     private formBuilder: FormBuilder,
+    private paymentService: PaymentService,
   ) { }
 
   ngOnInit() {
@@ -29,9 +39,19 @@ export class PaymentsComponent implements OnInit {
     this.show = true;
   }
 
-  pay() {
+  ngOnDestroy() {
+    this.subscriptions.forEach(s => s.unsubscribe());
+  }
+
+
+  submit() {
 
     if (this.form.valid) {
+
+      const data: IPayment = Object.assign({}, this.form.value);
+      data.cardNumber = data.cardNumber.replace(/\D/g, '');
+
+      this.pay(data);
 
     } else {
       console.log(this.form);
@@ -54,9 +74,6 @@ export class PaymentsComponent implements OnInit {
     const field = this.form.get(fieldName);
 
     if (fieldName === 'cardNumber') {
-
-      console.log(field);
-
 
       const cleanedValue = field.value.replace(/\D/g, '');
       const matcher = cleanedValue.match(/(\d{0,4})(\d{0,4})(\d{0,4})(\d{0,4})/);
@@ -101,7 +118,7 @@ export class PaymentsComponent implements OnInit {
       if (error.required) {
         message = `Campo obrigatório`;
 
-      } else if (error.invalidCard || error.minlength || error.maxlength) {
+      } else if (error.invalidCard || error.minlength || error.maxlength || error.noAcceptCard) {
         message = 'Número de cartão inválido';
       }
     }
@@ -156,6 +173,21 @@ export class PaymentsComponent implements OnInit {
     }
 
     return false;
+  }
+
+  private pay(data: IPayment) {
+
+    const subscription = this.paymentService.pay(data).subscribe((res) => {
+  
+      this.paymentErrorMessage = '';
+      this.router.navigate(['/checkout-v2/pagamento/confirmacao']);
+
+    }, err => {
+      debugger;
+        this.paymentErrorMessage = err.message;
+    });
+
+    this.subscriptions.push(subscription);
   }
 
   private fillCardBrand(card: any) {
@@ -216,7 +248,7 @@ export class PaymentsComponent implements OnInit {
       ],
     });
 
-      this.mask('cardNumber');
+    this.mask('cardNumber');
   }
 
   private setFakeInstallments() {

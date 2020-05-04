@@ -1,4 +1,12 @@
 <ng-container *ngIf="show">
+    <ng-container *ngIf="(!!paymentErrorMessage)">
+        <div class="container-fluid p-0">
+            <div class="alert alert-danger text-center" role="alert">
+                {{ paymentErrorMessage }}
+            </div>
+        </div>
+    </ng-container>
+
     <div class="checkout">
         <div class="container">
             <div class="row">
@@ -62,7 +70,7 @@
                             <!-- pl-md-0 -->
                             <div class="col-md-8 col-12">
 
-                                <form class="card-form" [formGroup]="form" (ngSubmit)="pay()" autocomplete="off">
+                                <form class="card-form" [formGroup]="form" (ngSubmit)="submit()" autocomplete="off">
                                     <div class="d-none d-md-block">
                                         <app-step-box></app-step-box>
                                     </div>

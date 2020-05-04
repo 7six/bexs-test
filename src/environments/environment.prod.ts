@@ -6,6 +6,6 @@ export class Environment {
 
   constructor() { }
 
-  public apiUrl = `http://tripguard.insurancewss.com`;
+  public apiUrl = `http://localhost:4000`;
 
 }
