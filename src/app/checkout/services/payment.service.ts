@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of, BehaviorSubject, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { Environment } from 'src/environments/environment';
 
+import { Environment } from '@app/../environments/environment';
 import { IPayment } from '../shared/interfaces/IPayments';
 
 @Injectable()
@@ -23,7 +23,7 @@ export class PaymentService {
       return throwError({ message: 'Pagamento não aprovado' });
     }
 
-    // REAL REQUEST BODY TO API
+    // REAL REQUEST TO API
     // return this.http.post(`${this.env.apiUrl}/payments`, data, {
     //   observe: 'response'
 
