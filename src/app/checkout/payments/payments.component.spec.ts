@@ -13,7 +13,6 @@ describe('PaymentsComponent', () => {
 
   beforeEach(async(() => {
 
-    const routerStub = { navigate: () => ({}) };
     const PaymentServiceStub = {};
 
     TestBed.configureTestingModule({
@@ -22,7 +21,6 @@ describe('PaymentsComponent', () => {
       declarations: [PaymentsComponent],
       providers: [
         FormBuilder,
-        // { provide: Router, useValue: routerStub },
         { provide: PaymentService, useValue: PaymentServiceStub }
       ]
     }).compileComponents();
