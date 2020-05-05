@@ -37,10 +37,6 @@ export class PaymentsComponent implements OnInit, OnDestroy {
     this.createForm();
     this.setFakeInstallments();
     this.show = true;
-
-    // const data = {} as IPayment;
-    // data.cardNumber = '4111111111111111';
-    // this.pay(data);
   }
 
   ngOnDestroy() {
@@ -74,6 +70,7 @@ export class PaymentsComponent implements OnInit, OnDestroy {
   mask(fieldName: string) {
 
     let newValue: any;
+
     const field = this.form.get(fieldName);
 
     if (fieldName === 'cardNumber') {

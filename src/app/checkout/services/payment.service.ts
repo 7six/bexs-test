@@ -10,8 +10,8 @@ import { IPayment } from '../shared/interfaces/IPayments';
 export class PaymentService {
 
   constructor(
-    private env: Environment,
-    private http: HttpClient,
+    // private env: Environment,
+    // private http: HttpClient,
   ) { }
 
   pay(data: IPayment): Observable<any> {
