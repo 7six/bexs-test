@@ -83,7 +83,7 @@ export class PaymentsComponent implements OnInit, OnDestroy {
       value.push((matcher[4]) ? ' ' + matcher[4] : '');
       newValue = value.join('');
 
-      this.fillCardBrand(cleanedValue)
+      this.fillCardBrand(cleanedValue);
 
     } else if (fieldName === 'holderName') {
       newValue = field.value.replace(/\d/g, '');
@@ -250,7 +250,7 @@ export class PaymentsComponent implements OnInit, OnDestroy {
   private setFakeInstallments() {
 
     const total = 12000;
-    let installments = [];
+    const installments = [];
 
     for (let i = 1; i <= 12; i++) {
       installments.push({

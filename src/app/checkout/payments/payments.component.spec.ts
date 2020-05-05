@@ -93,7 +93,7 @@ describe('PaymentsComponent', () => {
     component.form.get('expireDate').setValue('12/22');
     component.form.get('cvv').setValue(123);
     component.form.get('installment').setValue(1);
-    component.submit()
+    component.submit();
 
     expect(service.pay).toHaveBeenCalled();
   });
