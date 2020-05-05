@@ -8,7 +8,6 @@ import { validateCard, validateFullname, validateExpireDate } from '@app/shared/
 
 import { ECardsRegex } from '@checkout/shared/enum/ECardsRegex';
 import { IPayment } from '../shared/interfaces/IPayments';
-import { debug } from 'util';
 
 @Component({
   selector: 'app-payments',
@@ -180,13 +179,9 @@ export class PaymentsComponent implements OnInit, OnDestroy {
     const subscription = this.paymentService.pay(data).subscribe((res) => {
 
       this.paymentErrorMessage = '';
-      this.router.navigate(['/checkout-v2/pagamento/confirmacao']);
+      this.router.navigate(['checkout/confirmacao']);
 
     }, err => {
-
-      // console.log(err);
-
-      // debugger;
       this.paymentErrorMessage = err.message;
     });
 
@@ -250,8 +245,6 @@ export class PaymentsComponent implements OnInit, OnDestroy {
         ])
       ],
     });
-
-    this.mask('cardNumber');
   }
 
   private setFakeInstallments() {

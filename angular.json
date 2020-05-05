@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "insurance": {
+    "bexs-test": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/insurance",
+            "outputPath": "dist/bexs-test",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -63,18 +63,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "insurance:build"
+            "browserTarget": "bexs-test:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "insurance:build:production"
+              "browserTarget": "bexs-test:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "insurance:build"
+            "browserTarget": "bexs-test:build"
           }
         },
         "test": {
@@ -111,16 +111,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "insurance:serve"
+            "devServerTarget": "bexs-test:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "insurance:serve:production"
+              "devServerTarget": "bexs-test:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "insurance"
+  "defaultProject": "bexs-test"
 }
