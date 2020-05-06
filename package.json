@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port 4201",
-    "build": "ng build",
+    "build": "ng build --prod --base-href https://7six.github.io/bexs-test/",
     "test": "ng test --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e"
